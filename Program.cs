@@ -27,22 +27,25 @@ class Program
 {
     static void Main(string[] args)
     {
-        PlayingCardDeck deck = new PlayingCardDeck();
-        Console.WriteLine( "Old Deck :" );
-        Program.PrintDeck(deck);
-        Console.ReadKey();
-
-        deck.Shuffle();
-        Console.WriteLine( "----------------" );
-        Console.WriteLine( "Shuffled Deck:" );
-        PrintDeck(deck);
     }
 
-    public static void PrintDeck(PlayingCardDeck deck)
+    public static void PrintPlayDeck(PlayingCardDeck deck)
     {
         foreach (var card in deck.Cards)
         {
             Console.WriteLine($"{card.PlayingRank} of {card.PlayingSuit}");
         }
+    }
+    public static void PlayingDeck()
+    {
+        PlayingCardDeck deck = new PlayingCardDeck();
+        Console.WriteLine( "Old Deck :" );
+        Program.PrintPlayDeck(deck);
+        Console.ReadKey();
+
+        deck.Shuffle();
+        Console.WriteLine( "----------------" );
+        Console.WriteLine( "Shuffled Deck:" );
+        Program.PrintPlayDeck(deck);
     }
 }
