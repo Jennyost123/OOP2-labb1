@@ -23,10 +23,34 @@ enum Rank
     king = 13,
     ace = 14
 }
+enum UnoColor
+{
+    Red,
+    Blue,
+    Green,
+    Yellow
+}
+enum UnoRank
+{
+    zero,
+    one,
+    two,
+    three,
+    four,
+    five,
+    six,
+    seven,
+    eight,
+    nine,
+    skip,
+    reverse,
+    drawTwo
+}
 class Program
 {
     static void Main(string[] args)
     {
+        UnoCardDeck();
     }
 
     public static void PrintPlayDeck(PlayingCardDeck deck)
@@ -47,5 +71,25 @@ class Program
         Console.WriteLine( "----------------" );
         Console.WriteLine( "Shuffled Deck:" );
         Program.PrintPlayDeck(deck);
+    }
+     public static void UnoCardDeck()
+    {
+        UnoCardDeck UnoDeck = new UnoCardDeck();
+        Console.WriteLine( "Old Deck :" );
+        Program.PrintUnoDeck(UnoDeck);
+        Console.ReadKey();
+
+        UnoDeck.Shuffle();
+        Console.WriteLine( "----------------" );
+        Console.WriteLine( "Shuffled Deck:" );
+        PrintUnoDeck(UnoDeck);
+    }
+    public static void PrintUnoDeck(UnoCardDeck deck)
+    {
+        for (int i = 0; i < deck.UnoCards.Count; i++)
+        {
+            var card = deck.UnoCards[i];
+            Console.WriteLine($"{card.Color} {card.Rank}");
+        }
     }
 }
