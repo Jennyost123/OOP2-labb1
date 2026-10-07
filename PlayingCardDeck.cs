@@ -23,8 +23,9 @@ class PlayingCardDeck
         Cards.AddRange(cards);
     }
     public PlayingCard Draw()
-    {   Cards.RemoveAt(0);
-        return Cards[0];
+    {   PlayingCard drawnCard = Cards[0];
+        Cards.RemoveAt(0);
+        return drawnCard;
     }
     public List<PlayingCard> Draw(int count)
     {

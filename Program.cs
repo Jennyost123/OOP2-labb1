@@ -27,7 +27,15 @@ class Program
 {
     static void Main(string[] args)
     {
-        
+        PlayingCardDeck deck = new PlayingCardDeck();
+        Console.WriteLine( "Old Deck :" );
+        Program.PrintDeck(deck);
+        Console.ReadKey();
+
+        deck.Shuffle();
+        Console.WriteLine( "----------------" );
+        Console.WriteLine( "Shuffled Deck:" );
+        PrintDeck(deck);
     }
 
     public static void PrintDeck(PlayingCardDeck deck)
