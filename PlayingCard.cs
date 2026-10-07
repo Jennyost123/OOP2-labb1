@@ -11,6 +11,6 @@ class PlayingCard
     }
     public override string ToString()
     {
-        return $"{PlayingSuit}";
+         return $"{PlayingRank} of {PlayingSuit}";
     }
 }

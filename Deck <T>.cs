@@ -9,12 +9,17 @@ class Deck<T>
         Cards = new List<T>();
     }
 
+    public Deck(IEnumerable<T> cards)
+    {
+        Cards = cards.ToList();
+    }
+
     public void Add(T card)
     {
         Cards.Add(card);
     }
 
-    public void AddRange(List<T> cards)
+    public void AddRange(IEnumerable<T> cards)
     {
         Cards.AddRange(cards);
     }

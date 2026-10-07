@@ -50,46 +50,48 @@ class Program
 {
     static void Main(string[] args)
     {
-        UnoCardDeck();
+        PlayingDeck();
+        Console.WriteLine("================");
     }
 
-    public static void PrintPlayDeck(PlayingCardDeck deck)
+    public static void TestDeck<T>(Deck<T> deck)
+    {
+        Console.WriteLine("Old Deck:");
+        PrintDeck(deck);
+        Console.ReadKey();
+        deck.Shuffle();
+        Console.WriteLine("----------------");
+        Console.WriteLine("Shuffled Deck:");
+        PrintDeck(deck);
+
+    }
+
+    public static void PrintDeck<T>(Deck<T> deck)
     {
         foreach (var card in deck.Cards)
         {
-            Console.WriteLine($"{card.PlayingRank} of {card.PlayingSuit}");
+            Console.WriteLine(card);
         }
     }
+
     public static void PlayingDeck()
     {
-        PlayingCardDeck deck = new PlayingCardDeck();
-        Console.WriteLine( "Old Deck :" );
-        Program.PrintPlayDeck(deck);
-        Console.ReadKey();
+        var cards = Enum.GetValues<Suit>()
+            .SelectMany(suit => Enum.GetValues<Rank>()
+                .Select(rank => new PlayingCard(suit, rank)));
 
-        deck.Shuffle();
-        Console.WriteLine( "----------------" );
-        Console.WriteLine( "Shuffled Deck:" );
-        Program.PrintPlayDeck(deck);
+        Deck<PlayingCard> deck = new Deck<PlayingCard>(cards);
+        TestDeck(deck);
     }
-     public static void UnoCardDeck()
-    {
-        UnoCardDeck UnoDeck = new UnoCardDeck();
-        Console.WriteLine( "Old Deck :" );
-        Program.PrintUnoDeck(UnoDeck);
-        Console.ReadKey();
 
-        UnoDeck.Shuffle();
-        Console.WriteLine( "----------------" );
-        Console.WriteLine( "Shuffled Deck:" );
-        PrintUnoDeck(UnoDeck);
-    }
-    public static void PrintUnoDeck(UnoCardDeck deck)
+    public static void UnoDeck()
     {
-        for (int i = 0; i < deck.UnoCards.Count; i++)
-        {
-            var card = deck.UnoCards[i];
-            Console.WriteLine($"{card.Color} {card.Rank}");
-        }
+        var cards = Enum.GetValues<UnoColor>()
+            .SelectMany(color => Enum.GetValues<UnoRank>()
+                .Take(10)
+                .Select(rank => new UnoCard(color, rank)));
+
+        Deck<UnoCard> deck = new Deck<UnoCard>(cards);
+        TestDeck(deck);
     }
 }
