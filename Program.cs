@@ -50,19 +50,18 @@ class Program
 {
     static void Main(string[] args)
     {
-        PlayingDeck();
-        Console.WriteLine("================");
+        
     }
 
-    public static void TestDeck<T>(Deck<T> deck)
+    public static void Pdeck<T>(Deck<T> deck)
     {
         Console.WriteLine("Old Deck:");
         PrintDeck(deck);
-        Console.ReadKey();
         deck.Shuffle();
         Console.WriteLine("----------------");
         Console.WriteLine("Shuffled Deck:");
         PrintDeck(deck);
+        Console.ReadKey();
 
     }
 
@@ -81,7 +80,7 @@ class Program
                 .Select(rank => new PlayingCard(suit, rank)));
 
         Deck<PlayingCard> deck = new Deck<PlayingCard>(cards);
-        TestDeck(deck);
+        Pdeck(deck);
     }
 
     public static void UnoDeck()
@@ -92,6 +91,6 @@ class Program
                 .Select(rank => new UnoCard(color, rank)));
 
         Deck<UnoCard> deck = new Deck<UnoCard>(cards);
-        TestDeck(deck);
+        Pdeck(deck);
     }
 }
